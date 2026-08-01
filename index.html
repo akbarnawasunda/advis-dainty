@@ -1,0 +1,1365 @@
+<!DOCTYPE HTML>
+<html lang="id">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>🌙 Starlight Garden — Advis Dainty</title>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet" />
+    <style>
+        /* ============================================================
+           THEME: STARLIGHT GARDEN — final version
+           ============================================================ */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            font-size: 18pt;
+        }
+        body {
+            font-family: 'Press Start 2P', monospace;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            position: relative;
+            overflow-x: hidden;
+            background: #0b081a;
+        }
+        body::before {
+            content: '';
+            position: fixed;
+            inset: 0;
+            background:
+                radial-gradient(ellipse at 30% 20%, #1e1b4b 0%, transparent 60%),
+                radial-gradient(ellipse at 70% 80%, #2d1b3d 0%, transparent 60%),
+                radial-gradient(ellipse at 50% 50%, #0f0a2a 0%, #06040f 100%);
+            z-index: 0;
+            animation: bgPulse 8s ease-in-out infinite alternate;
+        }
+        @keyframes bgPulse {
+            0% {
+                opacity: 0.8;
+            }
+            100% {
+                opacity: 1;
+            }
+        }
+
+        .star {
+            position: fixed;
+            background: #fff;
+            border-radius: 50%;
+            z-index: 0;
+            pointer-events: none;
+            animation: twinkle 2s ease-in-out infinite alternate;
+        }
+        .star:nth-child(1) {
+            width: 3px;
+            height: 3px;
+            top: 10%;
+            left: 5%;
+            animation-delay: 0s;
+        }
+        .star:nth-child(2) {
+            width: 4px;
+            height: 4px;
+            top: 25%;
+            right: 8%;
+            animation-delay: 0.6s;
+        }
+        .star:nth-child(3) {
+            width: 2px;
+            height: 2px;
+            bottom: 30%;
+            left: 15%;
+            animation-delay: 1.2s;
+        }
+        .star:nth-child(4) {
+            width: 5px;
+            height: 5px;
+            bottom: 20%;
+            right: 12%;
+            animation-delay: 0.3s;
+        }
+        .star:nth-child(5) {
+            width: 3px;
+            height: 3px;
+            top: 50%;
+            left: 3%;
+            animation-delay: 1.8s;
+        }
+        .star:nth-child(6) {
+            width: 4px;
+            height: 4px;
+            top: 60%;
+            right: 4%;
+            animation-delay: 0.9s;
+        }
+        .star:nth-child(7) {
+            width: 2px;
+            height: 2px;
+            top: 80%;
+            left: 25%;
+            animation-delay: 2.4s;
+        }
+        .star:nth-child(8) {
+            width: 3px;
+            height: 3px;
+            bottom: 5%;
+            right: 30%;
+            animation-delay: 1.5s;
+        }
+        @keyframes twinkle {
+            0% {
+                opacity: 0.2;
+                transform: scale(0.8);
+            }
+            100% {
+                opacity: 1;
+                transform: scale(1.3);
+            }
+        }
+
+        .moon {
+            position: fixed;
+            top: 5%;
+            right: 5%;
+            font-size: 4rem;
+            z-index: 0;
+            opacity: 0.4;
+            animation: floatMoon 6s ease-in-out infinite;
+            pointer-events: none;
+        }
+        @keyframes floatMoon {
+            0%,
+            100% {
+                transform: translateY(0) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-15px) rotate(8deg);
+            }
+        }
+
+        .wrapper {
+            position: relative;
+            z-index: 1;
+            width: 100%;
+            max-width: 34rem;
+            background: rgba(255, 255, 255, 0.04);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 3.5rem;
+            padding: 2rem 2rem;
+            border: 1.5px solid rgba(196, 181, 253, 0.25);
+            box-shadow:
+                0 40px 100px rgba(0, 0, 0, 0.7),
+                0 0 80px rgba(139, 92, 246, 0.08),
+                inset 0 1px 0 rgba(255, 255, 255, 0.06);
+            min-height: 540px;
+        }
+        .wrapper::before {
+            content: '🌙';
+            position: absolute;
+            top: -1.2rem;
+            left: -0.5rem;
+            font-size: 2.2rem;
+            opacity: 0.5;
+            animation: float 4s ease-in-out infinite;
+        }
+        .wrapper::after {
+            content: '✨';
+            position: absolute;
+            bottom: -0.8rem;
+            right: -0.5rem;
+            font-size: 2rem;
+            opacity: 0.5;
+            animation: float 4.5s ease-in-out infinite reverse;
+        }
+        @keyframes float {
+            0%,
+            100% {
+                transform: translateY(0) scale(1);
+            }
+            50% {
+                transform: translateY(-10px) scale(1.05);
+            }
+        }
+
+        .section {
+            display: none;
+            flex-direction: column;
+            align-items: center;
+            gap: 1rem;
+            animation: fadeUp 0.5s cubic-bezier(0.34, 1.56, 0.64, 1) forwards;
+        }
+        .section.active {
+            display: flex;
+        }
+        @keyframes fadeUp {
+            0% {
+                opacity: 0;
+                transform: translateY(20px) scale(0.95);
+            }
+            100% {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+        @keyframes shake {
+            0%,
+            100% {
+                transform: translateX(0);
+            }
+            20% {
+                transform: translateX(-12px) rotate(-2deg);
+            }
+            40% {
+                transform: translateX(12px) rotate(2deg);
+            }
+            60% {
+                transform: translateX(-6px);
+            }
+            80% {
+                transform: translateX(6px);
+            }
+        }
+        .section.shake {
+            animation: shake 0.4s ease;
+        }
+
+        .avatar {
+            font-size: 4.5rem;
+            line-height: 1;
+            filter: drop-shadow(0 0 40px rgba(167, 139, 250, 0.3));
+            animation: floatAvatar 3.6s ease-in-out infinite;
+            user-select: none;
+            cursor: default;
+        }
+        .avatar.small {
+            font-size: 3rem;
+        }
+        @keyframes floatAvatar {
+            0%,
+            100% {
+                transform: translateY(0px) rotate(0deg);
+            }
+            50% {
+                transform: translateY(-16px) rotate(4deg);
+            }
+        }
+
+        .title {
+            font-size: 1.1rem;
+            text-align: center;
+            color: #e2d5f0;
+            text-shadow: 0 0 30px rgba(196, 181, 253, 0.15);
+            line-height: 1.7;
+        }
+        .title .gold {
+            color: #fcd34d;
+        }
+        .title .white {
+            color: #fff;
+        }
+        .title .pink {
+            color: #f472b6;
+        }
+        .title .star-icon {
+            display: inline-block;
+            animation: spinStar 6s linear infinite;
+        }
+        @keyframes spinStar {
+            0% {
+                transform: rotate(0deg);
+            }
+            100% {
+                transform: rotate(360deg);
+            }
+        }
+
+        .subtitle {
+            font-size: 0.48rem;
+            color: #b8a9d4;
+            text-align: center;
+            line-height: 1.9;
+            letter-spacing: 0.5px;
+        }
+        .subtitle .highlight {
+            color: #f472b6;
+        }
+
+        .text-box {
+            background: rgba(255, 255, 255, 0.04);
+            border-radius: 1.8rem;
+            padding: 1.2rem 1.4rem;
+            border: 1px solid rgba(167, 139, 250, 0.12);
+            width: 100%;
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.03);
+        }
+        .text-box p {
+            font-size: 0.46rem;
+            color: #d4c8e8;
+            line-height: 2.2;
+            margin-bottom: 0.5rem;
+        }
+        .text-box p:last-child {
+            margin-bottom: 0;
+        }
+        .text-box .accent {
+            color: #e2d5f0;
+        }
+        .text-box .gold {
+            color: #fcd34d;
+        }
+
+        .puzzle-input {
+            display: flex;
+            gap: 0.6rem;
+            flex-wrap: wrap;
+            justify-content: center;
+            width: 100%;
+            margin: 0.2rem 0;
+        }
+        .puzzle-input input {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.6rem;
+            padding: 0.4rem 0.8rem;
+            background: rgba(255, 255, 255, 0.06);
+            border: 2px solid rgba(167, 139, 250, 0.25);
+            border-radius: 1.4rem;
+            color: #fff;
+            text-align: center;
+            width: 160px;
+            outline: none;
+            transition: all 0.3s;
+        }
+        .puzzle-input input:focus {
+            border-color: #a78bfa;
+            box-shadow: 0 0 40px rgba(167, 139, 250, 0.15);
+            background: rgba(255, 255, 255, 0.08);
+        }
+        .puzzle-input input.correct {
+            border-color: #34d399;
+            box-shadow: 0 0 50px rgba(52, 211, 153, 0.2);
+        }
+        .puzzle-input input.wrong {
+            border-color: #fb7185;
+            animation: shake 0.35s ease;
+        }
+
+        .hint {
+            font-size: 0.32rem;
+            color: #9a88b0;
+            text-align: center;
+            opacity: 0.6;
+            cursor: help;
+            transition: opacity 0.3s;
+            line-height: 1.6;
+        }
+        .hint:hover {
+            opacity: 1;
+        }
+
+        .btn-group {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 0.7rem;
+            width: 100%;
+            margin-top: 0.2rem;
+        }
+        .btn {
+            font-family: 'Press Start 2P', monospace;
+            font-size: 0.38rem;
+            padding: 0.5rem 1.2rem;
+            border-radius: 2.5rem;
+            border: 2px solid #a78bfa;
+            background: transparent;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.25s ease;
+            text-decoration: none;
+            display: inline-block;
+            text-align: center;
+            min-width: 90px;
+            box-shadow: 0 0 15px rgba(167, 139, 250, 0);
+            letter-spacing: 0.3px;
+        }
+        .btn:hover {
+            transform: translateY(-4px) scale(1.04);
+            box-shadow: 0 0 50px rgba(167, 139, 250, 0.25);
+            border-color: #c4b5fd;
+            background: rgba(167, 139, 250, 0.06);
+        }
+        .btn:active {
+            transform: scale(0.93);
+        }
+        .btn.glow {
+            animation: glowPulse 2.8s ease-in-out infinite;
+        }
+        .btn.gold {
+            border-color: #fcd34d;
+        }
+        .btn.gold:hover {
+            border-color: #fbbf24;
+            box-shadow: 0 0 50px rgba(251, 191, 36, 0.2);
+        }
+        .btn.pink {
+            border-color: #f472b6;
+        }
+        .btn.pink:hover {
+            border-color: #f9a8d4;
+            box-shadow: 0 0 50px rgba(244, 114, 182, 0.25);
+        }
+        .btn.danger {
+            border-color: #fb7185;
+        }
+        .btn.danger:hover {
+            border-color: #f43f5e;
+            box-shadow: 0 0 50px rgba(244, 63, 94, 0.2);
+        }
+        .btn.success {
+            border-color: #34d399;
+        }
+        .btn.success:hover {
+            border-color: #10b981;
+            box-shadow: 0 0 50px rgba(52, 211, 153, 0.2);
+        }
+        @keyframes glowPulse {
+            0%,
+            100% {
+                box-shadow: 0 0 15px rgba(167, 139, 250, 0.1);
+            }
+            50% {
+                box-shadow: 0 0 50px rgba(167, 139, 250, 0.3), 0 0 80px rgba(167, 139, 250, 0.06);
+            }
+        }
+
+        .progress {
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.3rem 0.8rem;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 2.5rem;
+            border: 1px solid rgba(167, 139, 250, 0.08);
+            flex-wrap: wrap;
+            width: 100%;
+        }
+        .progress .dot {
+            font-size: 1.2rem;
+            opacity: 0.2;
+            transition: all 0.4s;
+        }
+        .progress .dot.done {
+            opacity: 1;
+            animation: popDot 0.4s ease;
+        }
+        .progress .dot.current {
+            opacity: 0.8;
+            animation: pulseDot 1s ease-in-out infinite;
+        }
+        @keyframes popDot {
+            0% {
+                transform: scale(0);
+            }
+            60% {
+                transform: scale(1.4);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+        @keyframes pulseDot {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.25);
+            }
+        }
+
+        .lives {
+            font-size: 0.55rem;
+            color: #fb7185;
+            display: flex;
+            align-items: center;
+            gap: 0.3rem;
+            padding: 0.15rem 0.6rem;
+            border-radius: 1.5rem;
+            border: 1px solid rgba(251, 113, 133, 0.12);
+            background: rgba(251, 113, 133, 0.04);
+        }
+        .lives .heart-icon {
+            animation: heartBeat 1.2s ease-in-out infinite;
+            display: inline-block;
+        }
+        @keyframes heartBeat {
+            0%,
+            100% {
+                transform: scale(1);
+            }
+            15% {
+                transform: scale(1.25);
+            }
+            30% {
+                transform: scale(1);
+            }
+            45% {
+                transform: scale(1.15);
+            }
+            60% {
+                transform: scale(1);
+            }
+        }
+
+        .timer {
+            font-size: 0.6rem;
+            color: #fcd34d;
+            text-shadow: 0 0 20px rgba(252, 211, 77, 0.12);
+            padding: 0.2rem 0.8rem;
+            border-radius: 1.5rem;
+            border: 1px solid rgba(252, 211, 77, 0.08);
+            background: rgba(252, 211, 77, 0.03);
+            font-variant-numeric: tabular-nums;
+        }
+        .timer.danger {
+            color: #fb7185;
+            border-color: rgba(251, 113, 133, 0.25);
+            animation: pulseDanger 0.7s infinite;
+        }
+        @keyframes pulseDanger {
+            0%,
+            100% {
+                opacity: 1;
+            }
+            50% {
+                opacity: 0.3;
+            }
+        }
+
+        .header-info {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-bottom: 0.2rem;
+        }
+
+        #heartConfetti {
+            position: fixed;
+            inset: 0;
+            pointer-events: none;
+            z-index: 1000;
+            overflow: hidden;
+        }
+        .heart-confetti {
+            position: absolute;
+            top: -20px;
+            font-size: 1.2rem;
+            animation: heartFall linear forwards;
+            user-select: none;
+        }
+        @keyframes heartFall {
+            0% {
+                transform: translateY(0) rotate(0deg) scale(0.5);
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(110vh) rotate(540deg) scale(1.2);
+                opacity: 0;
+            }
+        }
+
+        @media (max-width: 600px) {
+            html {
+                font-size: 14pt;
+            }
+            .wrapper {
+                padding: 1.5rem 1rem;
+                border-radius: 2rem;
+            }
+            .avatar {
+                font-size: 3.5rem;
+            }
+            .title {
+                font-size: 0.85rem;
+            }
+            .btn {
+                font-size: 0.34rem;
+                padding: 0.4rem 0.8rem;
+                min-width: 70px;
+            }
+            .puzzle-input input {
+                font-size: 0.5rem;
+                width: 120px;
+            }
+            .timer {
+                font-size: 0.5rem;
+            }
+            .lives {
+                font-size: 0.45rem;
+            }
+        }
+        @media (max-width: 400px) {
+            html {
+                font-size: 11pt;
+            }
+            .wrapper {
+                padding: 1rem 0.75rem;
+            }
+            .title {
+                font-size: 0.7rem;
+            }
+            .text-box p {
+                font-size: 0.4rem;
+            }
+            .btn {
+                font-size: 0.3rem;
+                padding: 0.3rem 0.6rem;
+                min-width: 60px;
+            }
+            .puzzle-input input {
+                font-size: 0.45rem;
+                width: 100px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="star"></div>
+    <div class="moon">🌙</div>
+
+    <div id="heartConfetti"></div>
+
+    <div class="wrapper">
+
+        <!-- ===== HOME ===== -->
+        <div class="section active" id="home">
+            <div class="avatar" id="avatarHome">🌙</div>
+            <div class="title">
+                <span class="star-icon">⭐</span> STARLIGHT GARDEN <span class="star-icon">⭐</span>
+                <br><span class="white" style="font-size:0.6rem;">— untuk <span class="pink">Advis Dainty</span></span>
+            </div>
+            <div class="subtitle">
+                ✦ 10 teka-teki bintang · 5 menit · 3 nyawa ✦
+            </div>
+            <div class="text-box" style="border-color:rgba(252,211,77,0.1);">
+                <p style="font-size:0.4rem; color:#b8a9d4; text-align:center; line-height:2.2;">
+                    “Halo, <span class="pink">Advis</span>.<br>
+                    Selamat datang di Taman Bintang — tempat dimana<br>
+                    setiap jawaban membawamu lebih dekat ke jantung galaksi.<br>
+                    Aku menyembunyikan 10 teka-teki di sini.<br>
+                    Pecahkan semuanya, dan kau akan menemukan<br>
+                    <span class="gold">sesuatu yang sangat aku pendam</span>.<br>
+                    <span style="color:#f472b6;">— Yazhaxa Raynawa, sang penjaga taman.</span>”
+                </p>
+            </div>
+            <div style="width:100%; text-align:center; margin-top:0.2rem;">
+                <a class="btn glow pink" onclick="startGame()">🌠 MULAI PETUALANGAN</a>
+            </div>
+            <div class="easter-egg" id="easterEgg" style="font-size:0.32rem; color:#f472b6; text-align:center; opacity:0; transition:opacity 0.8s; min-height:1.2rem;">
+                🌸 KEPO BANGET SIH LU, TAPI YAKALAH ADVIS EMANG GEMES 🌸
+            </div>
+        </div>
+
+        <!-- ===== PUZZLE CONTAINER ===== -->
+        <div id="puzzleContainer" style="width:100%; display:none;"></div>
+
+        <!-- ===== ENDING ===== -->
+        <div class="section" id="ending">
+            <div class="avatar" style="font-size:4.5rem;">🌠</div>
+            <div class="title">
+                <span class="gold">✨ BINTANG TELAH BERBICARA ✨</span>
+            </div>
+            <div class="text-box" style="border-color:rgba(52,211,153,0.15);">
+                <p style="font-size:0.45rem; text-align:center; color:#d4e0d0; line-height:2.4;">
+                    <span class="pink">ADVIS DAINTY! Kamu berhasil!</span><br><br>
+                    10 teka-teki berhasil kamu pecahkan.<br>
+                    Sekarang kamu tahu:<br>
+                    - Aku lahir 01-11-2005<br>
+                    - Aku dari Bandung<br>
+                    - Aku suka donghua<br>
+                    - Dan aku menulis novel dengan MC bernama Yazhaxa Raynawa<br><br>
+                    Tapi yang paling penting:<br>
+                    <span class="gold" style="font-size:1.2rem;">TRAKTIR KOPI DONG! 💕</span><br><br>
+                    Selamat ulang tahun ke-18, Advis.<br>
+                    Semoga hari-harimu selalu indah.<br><br>
+                    — Yazhaxa Raynawa, karakter dingin, kejam, manipulatif, tapi baik hati sama orang satu ini.
+                </p>
+            </div>
+            <div class="btn-group">
+                <a class="btn gold" onclick="resetGame()">🔄 Main Lagi</a>
+                <a class="btn" onclick="goTo('home')">🏠 Kembali ke Awal</a>
+            </div>
+        </div>
+
+    </div>
+
+    <script>
+        // ============================================================
+        //  SOUND ENGINE — HAPPY BIRTHDAY PIANO (MP3)
+        // ============================================================
+        let audioCtx = null;
+        let bgAudio = null;
+
+        function getAudioCtx() {
+            if (!audioCtx) {
+                audioCtx = new(window.AudioContext || window.webkitAudioContext)();
+            }
+            return audioCtx;
+        }
+
+        // -- Background Music (Happy Birthday piano) --
+        function startBackgroundMusic() {
+            if (bgAudio) {
+                if (bgAudio.paused) bgAudio.play();
+                return;
+            }
+            try {
+                bgAudio = new Audio('happy-birthday.mp3');
+                bgAudio.loop = true;
+                bgAudio.volume = 0.25;
+                bgAudio.play().catch(e => console.log('BGM autoplay diblokir, klik layar untuk mulai.'));
+            } catch (e) {
+                console.log('BGM gagal diputar:', e);
+            }
+        }
+
+        function stopBackgroundMusic() {
+            if (bgAudio) {
+                bgAudio.pause();
+                bgAudio.currentTime = 0;
+            }
+        }
+
+        // --- SFX (pop, buzzer, jingle, tick) ---
+        function playPop() {
+            try {
+                const ctx = getAudioCtx();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(880, ctx.currentTime);
+                gain.gain.setValueAtTime(0.25, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.12);
+                osc.start(ctx.currentTime);
+                osc.stop(ctx.currentTime + 0.12);
+                const osc2 = ctx.createOscillator();
+                const gain2 = ctx.createGain();
+                osc2.connect(gain2);
+                gain2.connect(ctx.destination);
+                osc2.type = 'sine';
+                osc2.frequency.setValueAtTime(1100, ctx.currentTime + 0.05);
+                gain2.gain.setValueAtTime(0.18, ctx.currentTime + 0.05);
+                gain2.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.18);
+                osc2.start(ctx.currentTime + 0.05);
+                osc2.stop(ctx.currentTime + 0.18);
+            } catch (e) {}
+        }
+
+        function playBuzzer() {
+            try {
+                const ctx = getAudioCtx();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.type = 'square';
+                osc.frequency.setValueAtTime(180, ctx.currentTime);
+                gain.gain.setValueAtTime(0.15, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.35);
+                osc.start(ctx.currentTime);
+                osc.stop(ctx.currentTime + 0.35);
+            } catch (e) {}
+        }
+
+        function playJingle() {
+            try {
+                const ctx = getAudioCtx();
+                const notes = [523, 659, 784, 1047];
+                notes.forEach((freq, i) => {
+                    const osc = ctx.createOscillator();
+                    const gain = ctx.createGain();
+                    osc.connect(gain);
+                    gain.connect(ctx.destination);
+                    osc.type = 'sine';
+                    osc.frequency.setValueAtTime(freq, ctx.currentTime + i * 0.15);
+                    gain.gain.setValueAtTime(0.2, ctx.currentTime + i * 0.15);
+                    gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + i * 0.15 + 0.2);
+                    osc.start(ctx.currentTime + i * 0.15);
+                    osc.stop(ctx.currentTime + i * 0.15 + 0.2);
+                });
+            } catch (e) {}
+        }
+
+        function playTick() {
+            try {
+                const ctx = getAudioCtx();
+                const osc = ctx.createOscillator();
+                const gain = ctx.createGain();
+                osc.connect(gain);
+                gain.connect(ctx.destination);
+                osc.type = 'sine';
+                osc.frequency.setValueAtTime(600, ctx.currentTime);
+                gain.gain.setValueAtTime(0.08, ctx.currentTime);
+                gain.gain.exponentialRampToValueAtTime(0.01, ctx.currentTime + 0.06);
+                osc.start(ctx.currentTime);
+                osc.stop(ctx.currentTime + 0.06);
+            } catch (e) {}
+        }
+
+        // ============================================================
+        //  DATA PUZZLE — FINAL VERSION
+        // ============================================================
+        const puzzles = [{
+            id: 'p1',
+            emoji: '💫',
+            title: 'Teka-teki 1',
+            question: 'Berapa usia kamu sekarang? (angka keramat, 2 digit)',
+            hint: '💡 Angka ini sama dengan tanggal & bulan lahirku',
+            answer: '18',
+            type: 'text',
+            placeholder: '??'
+        }, {
+            id: 'p2',
+            emoji: '🌙',
+            title: 'Teka-teki 2',
+            question: 'Kapan kita sering ngobrol?',
+            hint: '💡 Saat bintang-bintang mulai muncul di langit',
+            answer: 'malam',
+            type: 'text',
+            placeholder: '.....'
+        }, {
+            id: 'p3',
+            emoji: '✍️',
+            title: 'Teka-teki 3',
+            question: 'Pembuat kuis ini adalah seorang apa?',
+            hint: '💡 Profesi ini sering nulis cerita tentang cinta dan petualangan',
+            answer: 'penulis',
+            type: 'text',
+            placeholder: '.......'
+        }, {
+            id: 'p4',
+            emoji: '❤️',
+            title: 'Teka-teki 4',
+            question: 'Warna merah melambangkan apa?',
+            hint: '💡 Warna ini identik dengan Valentine',
+            answer: 'cinta',
+            type: 'text',
+            placeholder: '.....'
+        }, {
+            id: 'p5',
+            emoji: '🌍',
+            title: 'Teka-teki 5',
+            question: 'Planet dewa cinta dalam mitologi Romawi?',
+            hint: '💡 Planet ini paling terang di langit malam',
+            answer: 'venus',
+            type: 'text',
+            placeholder: '.....'
+        }, {
+            id: 'p6',
+            emoji: '😏',
+            title: 'Teka-teki 6',
+            question: 'Pembuat kuis ini orangnya gimana?',
+            hint: '💡 Pilih yang paling sesuai (ada opsi semuanya)',
+            type: 'choice',
+            choices: ['Nyebelin', 'Lucu', 'Gemes', 'Ganteng', 'Baik Hati', 'Sombong', 'Semuanya'],
+            answer: 'semuanya'
+        }, {
+            id: 'p7',
+            emoji: '📅',
+            title: 'Teka-teki 7',
+            question: 'Tanggal lahir pembuat kuis ini? (DD-MM-YYYY)',
+            hint: '💡 Jumlah semua angkanya = 10',
+            answer: '01-11-2005',
+            type: 'text',
+            placeholder: 'DD-MM-YYYY'
+        }, {
+            id: 'p8',
+            emoji: '🏙️',
+            title: 'Teka-teki 8',
+            question: 'Pembuat kuis ini dari kota mana?',
+            hint: '💡 Kota ini dijuluki "Parijs van Java"',
+            answer: 'bandung',
+            type: 'text',
+            placeholder: '.......'
+        }, {
+            id: 'p9',
+            emoji: '📚',
+            title: 'Teka-teki 9',
+            question: 'MC novel THE VOID\'S EXCEPTION itu siapa?',
+            hint: '💡 Namanya sama dengan penulis kuis ini',
+            answer: 'yazhaxa raynawa',
+            type: 'text',
+            placeholder: '...............'
+        }, {
+            id: 'p10',
+            emoji: '🎬',
+            title: 'Teka-teki 10 (FINAL)',
+            question: 'Pembuat kuis ini suka nonton apa?',
+            hint: '💡 Ini anime versi China, beda sama Jepang',
+            answer: 'donghua',
+            type: 'text',
+            placeholder: '.......'
+        }];
+
+        // ============================================================
+        //  GAME STATE
+        // ============================================================
+        const state = {
+            currentPuzzle: 0,
+            lives: 3,
+            timer: 300,
+            timerInterval: null,
+            gameActive: false,
+            gameOver: false,
+            completed: false,
+        };
+
+        const puzzleContainer = document.getElementById('puzzleContainer');
+        const homeSection = document.getElementById('home');
+        const endingSection = document.getElementById('ending');
+
+        // ============================================================
+        //  FUNGSI UTAMA
+        // ============================================================
+        function startGame() {
+            if (state.gameActive) return;
+            getAudioCtx();
+            resetState();
+            state.gameActive = true;
+            hideAllSections();
+            puzzleContainer.style.display = 'block';
+            renderPuzzle(0);
+            startTimer();
+            startBackgroundMusic();
+            homeSection.classList.remove('active');
+            endingSection.classList.remove('active');
+            playTick();
+        }
+
+        function resetState() {
+            if (state.timerInterval) {
+                clearInterval(state.timerInterval);
+                state.timerInterval = null;
+            }
+            stopBackgroundMusic();
+            state.currentPuzzle = 0;
+            state.lives = 3;
+            state.timer = 300;
+            state.gameActive = false;
+            state.gameOver = false;
+            state.completed = false;
+            document.getElementById('heartConfetti').innerHTML = '';
+        }
+
+        function resetGame() {
+            resetState();
+            hideAllSections();
+            homeSection.classList.add('active');
+            puzzleContainer.style.display = 'none';
+            endingSection.classList.remove('active');
+            updateTimerDisplay();
+            updateLivesDisplay();
+            playTick();
+        }
+
+        function hideAllSections() {
+            document.querySelectorAll('.section').forEach(el => el.classList.remove('active'));
+        }
+
+        function goTo(id) {
+            if (state.gameOver && id !== 'home') return;
+            hideAllSections();
+            const target = document.getElementById(id);
+            if (target) target.classList.add('active');
+            if (id === 'home') {
+                puzzleContainer.style.display = 'none';
+                endingSection.classList.remove('active');
+                state.gameActive = false;
+                if (state.timerInterval) {
+                    clearInterval(state.timerInterval);
+                    state.timerInterval = null;
+                }
+                stopBackgroundMusic();
+                playTick();
+            }
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        // ============================================================
+        //  TIMER
+        // ============================================================
+        function startTimer() {
+            if (state.timerInterval) clearInterval(state.timerInterval);
+            updateTimerDisplay();
+            state.timerInterval = setInterval(() => {
+                state.timer--;
+                updateTimerDisplay();
+                if (state.timer <= 0) {
+                    clearInterval(state.timerInterval);
+                    state.timerInterval = null;
+                    gameOver('⏰ Waktu habis! Coba lagi, Advis. Aku tunggu di taman.');
+                }
+            }, 1000);
+        }
+
+        function updateTimerDisplay() {
+            let el = document.querySelector('.timer');
+            if (!el) {
+                el = document.createElement('div');
+                el.className = 'timer';
+                const header = document.querySelector('.header-info');
+                if (header) header.appendChild(el);
+                else document.querySelector('.wrapper').prepend(el);
+            }
+            const m = Math.floor(state.timer / 60);
+            const s = state.timer % 60;
+            el.textContent = `⏱ ${String(m).padStart(2,'0')}:${String(s).padStart(2,'0')}`;
+            if (state.timer <= 30) el.classList.add('danger');
+            else el.classList.remove('danger');
+        }
+
+        function updateLivesDisplay() {
+            let el = document.querySelector('.lives');
+            if (!el) {
+                el = document.createElement('div');
+                el.className = 'lives';
+                const header = document.querySelector('.header-info');
+                if (header) header.appendChild(el);
+                else document.querySelector('.wrapper').prepend(el);
+            }
+            const hearts = '❤️'.repeat(state.lives) + '🖤'.repeat(Math.max(0, 3 - state.lives));
+            el.innerHTML = `<span class="heart-icon">💫</span> ${hearts}`;
+            if (state.lives === 0) el.style.opacity = '0.4';
+            else el.style.opacity = '1';
+        }
+
+        // ============================================================
+        //  RENDER PUZZLE
+        // ============================================================
+        function renderPuzzle(index) {
+            if (index >= puzzles.length) {
+                completeGame();
+                return;
+            }
+            if (state.lives <= 0) {
+                gameOver('💔 Nyawa habis! Jangan menyerah, Advis. Aku percaya kamu bisa!');
+                return;
+            }
+
+            state.currentPuzzle = index;
+            const p = puzzles[index];
+            const container = puzzleContainer;
+            container.innerHTML = '';
+            container.style.display = 'block';
+
+            const prog = document.createElement('div');
+            prog.className = 'progress';
+            for (let i = 0; i < puzzles.length; i++) {
+                const dot = document.createElement('span');
+                dot.className = 'dot';
+                dot.textContent = i < index ? '⭐' : (i === index ? '🌠' : '⬜');
+                if (i < index) dot.classList.add('done');
+                if (i === index) dot.classList.add('current');
+                prog.appendChild(dot);
+            }
+            container.appendChild(prog);
+
+            const headerInfo = document.createElement('div');
+            headerInfo.className = 'header-info';
+            container.appendChild(headerInfo);
+
+            const avatar = document.createElement('div');
+            avatar.className = 'avatar small';
+            avatar.textContent = p.emoji;
+            container.appendChild(avatar);
+
+            const title = document.createElement('div');
+            title.className = 'subtitle';
+            title.innerHTML = `<span class="highlight">${p.title}</span> · ${index+1}/${puzzles.length}`;
+            container.appendChild(title);
+
+            const box = document.createElement('div');
+            box.className = 'text-box';
+            const q = document.createElement('p');
+            q.textContent = p.question;
+            box.appendChild(q);
+            if (p.hint) {
+                const h = document.createElement('p');
+                h.className = 'hint';
+                h.textContent = p.hint;
+                box.appendChild(h);
+            }
+            container.appendChild(box);
+
+            const inputArea = document.createElement('div');
+            inputArea.className = 'puzzle-input';
+
+            if (p.type === 'choice') {
+                p.choices.forEach(choice => {
+                    const btn = document.createElement('a');
+                    btn.className = 'btn pink';
+                    btn.textContent = choice;
+                    btn.style.fontSize = '0.8rem';
+                    btn.style.padding = '0.2rem 0.8rem';
+                    btn.style.minWidth = 'auto';
+                    btn.onclick = function() {
+                        checkAnswer(choice, p);
+                    };
+                    inputArea.appendChild(btn);
+                });
+            } else {
+                const input = document.createElement('input');
+                input.type = 'text';
+                input.placeholder = p.placeholder || '...';
+                input.id = 'puzzleInput';
+                input.autocomplete = 'off';
+                inputArea.appendChild(input);
+
+                const submitBtn = document.createElement('a');
+                submitBtn.className = 'btn glow pink';
+                submitBtn.textContent = '🌠 Jawab';
+                submitBtn.onclick = function() {
+                    const val = document.getElementById('puzzleInput').value.trim().toLowerCase();
+                    checkAnswer(val, p);
+                };
+                inputArea.appendChild(submitBtn);
+
+                input.addEventListener('keydown', function(e) {
+                    if (e.key === 'Enter') {
+                        const val = this.value.trim().toLowerCase();
+                        checkAnswer(val, p);
+                    }
+                });
+
+                setTimeout(() => input.focus(), 300);
+            }
+
+            container.appendChild(inputArea);
+
+            const feedback = document.createElement('div');
+            feedback.id = 'puzzleFeedback';
+            feedback.style.cssText =
+                'font-size:0.35rem; min-height:1.8rem; text-align:center; color:#e2d5f0; padding:0.2rem;';
+            container.appendChild(feedback);
+
+            const btnGroup = document.createElement('div');
+            btnGroup.className = 'btn-group';
+            const backBtn = document.createElement('a');
+            backBtn.className = 'btn';
+            backBtn.textContent = '🏠 Home';
+            backBtn.onclick = function() {
+                if (confirm('Yakin mau keluar? Progress akan hilang!')) {
+                    resetGame();
+                }
+            };
+            btnGroup.appendChild(backBtn);
+            container.appendChild(btnGroup);
+
+            updateLivesDisplay();
+            updateTimerDisplay();
+            container.classList.remove('shake');
+        }
+
+        // ============================================================
+        //  CEK JAWABAN
+        // ============================================================
+        function checkAnswer(input, puzzle) {
+            if (state.gameOver || state.completed) return;
+            const feedback = document.getElementById('puzzleFeedback');
+            if (!feedback) return;
+
+            const userAnswer = typeof input === 'string' ? input.trim().toLowerCase() : input;
+            const correct = typeof puzzle.answer === 'string' ? puzzle.answer.toLowerCase() : puzzle.answer;
+
+            // Special case untuk nomor 6 (choice) — feedback lucu kalau salah
+            if (puzzle.id === 'p6' && userAnswer !== correct) {
+                feedback.innerHTML = '❌ <span style="color:#fb7185;">Hah? Cuma itu? Aku lebih dari itu, dong! Coba lagi.</span>';
+                // Tidak mengurangi nyawa, hanya ulangi
+                playBuzzer();
+                const container = document.getElementById('puzzleContainer');
+                container.classList.add('shake');
+                setTimeout(() => container.classList.remove('shake'), 400);
+                // Jangan kurangi nyawa, hanya reset choice
+                setTimeout(() => {
+                    renderPuzzle(state.currentPuzzle);
+                }, 800);
+                return;
+            }
+
+            if (userAnswer === correct) {
+                // BENAR
+                feedback.innerHTML = '✅ <span style="color:#34d399;">BENAR! 💫 Lanjut ke bintang berikutnya!</span>';
+                playPop();
+                spawnHearts(8);
+                const dots = document.querySelectorAll('.progress .dot');
+                if (dots[state.currentPuzzle]) {
+                    dots[state.currentPuzzle].textContent = '⭐';
+                    dots[state.currentPuzzle].classList.add('done');
+                    dots[state.currentPuzzle].classList.remove('current');
+                }
+                setTimeout(() => {
+                    renderPuzzle(state.currentPuzzle + 1);
+                }, 800);
+            } else {
+                // SALAH
+                state.lives--;
+                updateLivesDisplay();
+                feedback.innerHTML = `❌ <span style="color:#fb7185;">Salah! Nyawa tersisa ${state.lives}.</span>`;
+                playBuzzer();
+                const container = document.getElementById('puzzleContainer');
+                container.classList.add('shake');
+                setTimeout(() => container.classList.remove('shake'), 400);
+
+                const inputEl = document.getElementById('puzzleInput');
+                if (inputEl) {
+                    inputEl.classList.add('wrong');
+                    setTimeout(() => inputEl.classList.remove('wrong'), 400);
+                    inputEl.value = '';
+                    setTimeout(() => inputEl.focus(), 500);
+                }
+
+                if (state.lives <= 0) {
+                    setTimeout(() => {
+                        gameOver('💔 Nyawa habis! Kembali ke awal, ya. Aku tunggu di sini.');
+                    }, 600);
+                } else {
+                    setTimeout(() => {
+                        renderPuzzle(state.currentPuzzle);
+                    }, 800);
+                }
+            }
+        }
+
+        // ============================================================
+        //  GAME OVER
+        // ============================================================
+        function gameOver(message) {
+            if (state.gameOver) return;
+            state.gameOver = true;
+            state.gameActive = false;
+            if (state.timerInterval) {
+                clearInterval(state.timerInterval);
+                state.timerInterval = null;
+            }
+            stopBackgroundMusic();
+            playBuzzer();
+            hideAllSections();
+            homeSection.classList.add('active');
+            puzzleContainer.style.display = 'none';
+            endingSection.classList.remove('active');
+
+            const box = homeSection.querySelector('.text-box');
+            if (box) {
+                box.innerHTML = `
+                            <p style="font-size:0.4rem; color:#f9d1e5; text-align:center; line-height:2.2;">
+                                💔 ${message}<br><br>
+                                Tapi tenang, aku tetap suka sama kamu kok.<br>
+                                Coba lagi ya!<br><br>
+                                <span style="color:#f472b6;">— Yazhaxa Raynawa</span>
+                            </p>
+                        `;
+            }
+            updateTimerDisplay();
+            updateLivesDisplay();
+        }
+
+        // ============================================================
+        //  COMPLETE GAME
+        // ============================================================
+        function completeGame() {
+            if (state.completed) return;
+            state.completed = true;
+            state.gameActive = false;
+            if (state.timerInterval) {
+                clearInterval(state.timerInterval);
+                state.timerInterval = null;
+            }
+            stopBackgroundMusic();
+            playJingle();
+            hideAllSections();
+            endingSection.classList.add('active');
+            puzzleContainer.style.display = 'none';
+            spawnHearts(150);
+            updateTimerDisplay();
+            updateLivesDisplay();
+        }
+
+        // ============================================================
+        //  HEART CONFETTI
+        // ============================================================
+        function spawnHearts(count) {
+            const container = document.getElementById('heartConfetti');
+            const emojis = ['❤️', '💕', '💖', '💗', '💘', '🌠', '⭐', '✨', '🌸'];
+            for (let i = 0; i < count; i++) {
+                const el = document.createElement('div');
+                el.className = 'heart-confetti';
+                const emoji = emojis[Math.floor(Math.random() * emojis.length)];
+                const left = Math.random() * 100;
+                const size = 0.8 + Math.random() * 1.2;
+                const duration = 2 + Math.random() * 3;
+                const delay = Math.random() * 2;
+                el.textContent = emoji;
+                el.style.cssText = `
+                            left: ${left}%;
+                            font-size: ${size}rem;
+                            animation-duration: ${duration}s;
+                            animation-delay: ${delay}s;
+                            transform: rotate(${Math.random()*360}deg);
+                        `;
+                container.appendChild(el);
+                setTimeout(() => {
+                    if (el.parentNode) el.remove();
+                }, (duration + delay) * 1000 + 200);
+            }
+        }
+
+        // ============================================================
+        //  EASTER EGG
+        // ============================================================
+        let clickCount = 0;
+        document.getElementById('avatarHome')?.addEventListener('click', function() {
+            clickCount++;
+            if (clickCount >= 5) {
+                document.getElementById('easterEgg').style.opacity = '1';
+                spawnHearts(20);
+                playPop();
+                clickCount = 0;
+            }
+        });
+
+        // ============================================================
+        //  INISIALISASI
+        // ============================================================
+        puzzleContainer.style.display = 'none';
+        homeSection.classList.add('active');
+        endingSection.classList.remove('active');
+        updateTimerDisplay();
+        updateLivesDisplay();
+
+        console.log('🌙 STARLIGHT GARDEN — untuk Advis Dainty 🌙');
+        console.log('⭐ dibuat dengan cinta oleh Yazhaxa Raynawa');
+        console.log('🎂 Selamat ulang tahun ke-18!');
+        console.log('🎵 Background: Happy Birthday piano');
+    </script>
+
+</body>
+</html>
