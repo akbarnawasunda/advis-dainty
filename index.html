@@ -731,7 +731,8 @@
                 return;
             }
             try {
-                bgAudio = new Audio('happy-birthday.mp3');
+                // NAMA FILE MP3 DISESUAIKAN DENGAN YANG ADA DI REPOSITORY
+                bgAudio = new Audio('art_roseman-happy-birthday-cartoon-569643.mp3');
                 bgAudio.loop = true;
                 bgAudio.volume = 0.25;
                 bgAudio.play().catch(e => console.log('BGM autoplay diblokir, klik layar untuk mulai.'));
